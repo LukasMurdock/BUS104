@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+    
+<header>    
+<style>
+body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    margin: 40px auto;
+    max-width: 571px;
+}
+</style>    
+</header>
+<body>
+ 
+<p>BUS 104 Homework 02</p>
+<h1>Future Value</h1>
+
+<p>You can estimate the future value of an investment<br>with the following formula:</p>
+<p><i>F</i>=<i>I</i>(1+<i>r</i>)<sup>t</sup></p>
+<br>
+<p><strong><i>F</i></strong> is the value of the investment when you retire</p>
+<p><strong><i>I</i></strong> is your initial investment
+<p><strong><i>r</i></strong> is the estimated annual average rate of return
+<p><strong><i>t</i></strong> is the number of years your investment will remain in the plan
+<br><br>
+<h2>Your turn</h2>
+    
+<form id="expForm">
+    Initial investment: <input type="number" value=""><br><br>
+    AAR: <input type="number" value=""><br><br>
+</form>
+    
+<a id="startCalc" href=# style="color: #0070c9;">Got it, let's calculate</a>
+
+<p id="outputText"></p>    
+    
+
+<script type="text/javascript">
+// Wait for pageload
+window.onload = function() {
+
+//Get a reference to the link on the page
+// with an id of "mylink"
+var a = document.getElementById("startCalc");
+
+//Run code when link is clicked
+a.onclick = function() {
+
+// Function
+  var x = document.getElementById("expForm");
+  var text = "";
+  var i;
+  for (i = 0; i < x.length ;i++) {
+    text += x.elements[i].value + "<br>";
+  }
+  document.getElementById("outputText").innerHTML = text;
+
+return false;
+    }
+}
+</script>
+
+</body>
+</html>

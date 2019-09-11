@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+<header>    
+<style>
+/*
+Lukas Murdock
+Section EA
+*/
+
+body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    margin: 40px auto;
+    max-width: 571px;
+}
+</style>    
+</header>
+<body>
+ 
+<p>BUS 104 Homework 03</p>
+<h1>Pay Calculator</h1>
+
+    
+<form id="expForm">
+    Hours worked: <input id="hours" type="number" value="" placeholder="40"><br><br>
+  <input type="radio" name="shift" value="1" checked> 1
+  <input type="radio" name="shift" value="2"> 2
+  <input type="radio" name="shift" value="3"> 3  
+</form>
+
+<br>
+<a id="startCalc" href=# style="color: #0070c9;">Got it, let's calculate</a>
+    
+<p id="outputFormula"></p>    
+<p id="shiftBonus"></p> 
+
+<script type="text/javascript">
+// Wait for pageload
+window.onload = function() {
+
+//Input field
+var input = document.getElementById("expForm");
+    
+//Keypress function execute
+input.addEventListener("keyup",function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("startCalc").click();
+    }
+});
+
+//Get link reference
+var a = document.getElementById("startCalc");
+
+//Run code when link is clicked
+a.onclick = function() {
+
+//Function
+    var hours = document.getElementById("hours").value;
+    var shift = document.querySelector('input[name="shift"]:checked').value;
+    var shiftSelect = shift
+    console.log(hours);
+    console.log(shift);
+    
+    var shiftOne = 8.55;
+    var shiftThree = 9.405;
+    
+    if (shift == 1||shift == 2){
+        
+        shift = shiftOne;
+    }else if(shift == 3){
+        shift = shiftThree;
+    }
+
+    console.log(shift);
+    
+    if (hours == "") {
+        document.getElementById("hours").style = "box-shadow: 0 0 3px red;";
+        
+    } else {
+        document.getElementById("hours").style = "";
+
+    }
+    
+    var outputTwo = 0
+
+    if (hours <= 40){
+        var outputOne = (hours*shift);
+        if (shiftSelect == 3 && hours >= 32){
+            outputOne = (outputOne + 30);
+            console.log("Shift Bonus 1!")
+            document.getElementById("shiftBonus").innerHTML = "You've recieved a $30 shift bonus";
+        }
+        outputOne = outputOne.toFixed(2);
+        document.getElementById("outputFormula").innerHTML = "$"+shift+" * "+hours+" = " + "$" + outputOne.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    } else {
+        var outputOne = (hours*shift);
+        if (shiftSelect == 3 && hours >= 32){
+            outputOne = (outputOne + 30);
+            console.log("Shift Bonus 2!")
+            document.getElementById("shiftBonus").innerHTML = "You've recieved a $30 shift bonus";
+        }
+        var outputTwo = (outputOne + ((hours-40)*(shift*1.5))).toFixed(2);;
+        console.log(outputOne);
+        console.log(outputTwo);
+        outputOne = outputOne.toFixed(2);
+        document.getElementById("outputFormula").innerHTML = "($"+shift+" * "+hours+") + ($"+ (shift*1.5).toFixed(3) + "*" + (hours-40) +") = " + "$" + outputTwo.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    console.log(outputOne);
+    console.log(outputTwo);
+
+    
+return false;
+    }
+}
+</script>
+
+</body>
+</html>

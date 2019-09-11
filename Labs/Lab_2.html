@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+ 
+<p> Lab 2 Future Investment Value</p>
+  
+<script>
+/*
+FIRST LASTNAME
+Section EA
+*/
+var initialInvestment = prompt ("Initial investment:", 1000);
+var initialInvestment = Number (initialInvestment);
+    
+var stockYears = prompt ("Years invested in stocks:", 35);
+var stockYears = Number (stockYears);   
+
+var stockRate = prompt ("Stock rate of return:", .09);
+var stockRate = Number (stockRate);
+    
+var bondRate = prompt ("Bond rate of return:", .03);
+var bondRate = Number (bondRate);
+    
+var parenthesis = (1 + stockRate);
+    
+var retirementStocks = initialInvestment * Math.pow(parenthesis, stockYears) * Math.pow((1 + bondRate), 10);
+    
+//var parenthesis2= (1 + bondRate);
+    
+//var retirementBonds = retirementStocks*(Math.pow(parenthesis2, 10);
+
+    
+ alert("Investing $" + initialInvestment + " will become around $" + Math.round(retirementStocks,2) + " when you retire.");
+    
+</script>
+
+</body>
+</html>

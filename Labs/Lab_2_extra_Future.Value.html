@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<header>    
+<style>
+/*
+Lukas Murdock
+Section EA
+*/
+
+body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    margin: 40px auto;
+    max-width: 571px;
+}
+</style>    
+</header>
+<body>
+ 
+<p>BUS 104 Homework 02</p>
+<h1>Future Value</h1>
+
+<p>You can estimate the future value of an investment<br>with the following formula:</p>
+<p><i>F</i>=<i>I</i>(1+<i>r</i>)<sup>t</sup></p>
+<br>
+<p><strong><i>F</i></strong> is the value of the investment when you retire</p>
+<p><strong><i>I</i></strong> is your initial investment
+<p><strong><i>r</i></strong> is the estimated annual average rate of return
+<p><strong><i>t</i></strong> is the number of years your investment will remain in the plan
+<br><br>
+<h2>Your turn</h2>
+    
+<form id="expForm">
+    Initial investment: <input id="expInitial" type="number" value="" placeholder="1000"><br><br>
+    Years of investment: <input id="expYears" type="number" value="" placeholder="35"><br><br>
+    Stock AAR: <input id="expReturn" type="number" value="" placeholder=".09"><br><br>
+    Bond AAR: <input id="expBonds" type="number" value="" placeholder=".03"><br><br>
+</form>
+    
+<a id="startCalc" href=# style="color: #0070c9;">Got it, let's calculate</a>
+    
+<p id="outputFormula"></p>   
+    
+<p id="bondOutput"></p>   
+
+
+<script type="text/javascript">
+// Wait for pageload
+window.onload = function() {
+
+//Input field
+var input = document.getElementById("expForm");
+    
+//Keypress function execute
+input.addEventListener("keyup",function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("startCalc").click();
+    }
+});
+
+//Get link reference
+var a = document.getElementById("startCalc");
+
+//Run code when link is clicked
+a.onclick = function() {
+
+//Function
+    var expInitial = document.getElementById("expInitial").value;
+    var expReturn = document.getElementById("expReturn").value;
+    var expYears = document.getElementById("expYears").value;
+    var expBonds = document.getElementById("expBonds").value;
+
+
+
+    if (expInitial == ""||expReturn == ""||expYears == ""||expBonds == ""){
+    
+        if (expInitial == "") {
+        document.getElementById("expInitial").style = "box-shadow: 0 0 3px red;";
+        }
+
+        if (expReturn == "") {
+        document.getElementById("expReturn").style = "box-shadow: 0 0 3px red;";
+        }
+
+        if (expYears == "") {
+        document.getElementById("expYears").style = "box-shadow: 0 0 3px red;";
+        }
+        if (expBonds == "") {
+        document.getElementById("expBonds").style = "box-shadow: 0 0 3px red;";
+        }
+    return;
+    } else {
+        document.getElementById("expInitial").style = "";
+        document.getElementById("expReturn").style = "";
+        document.getElementById("expYears").style = "";
+        document.getElementById("expBonds").style = "";
+
+    }
+    
+    var expValue = (expInitial*(1 + expReturn)**expYears).toFixed(2)
+    
+    var bondCalc = (expValue*(1 + expBonds)**10).toFixed(2)
+    
+    document.getElementById("outputFormula").innerHTML = "$"+expInitial+"(1+"+expReturn+")<sup>"+expYears+"</sup> = " + "$" + expValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+    document.getElementById("bondOutput").innerHTML = "$"+expValue+"(1+"+expReturn+")<sup>"+"10"+"</sup> = " + "$" + bondCalc.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    
+return false;
+    }
+}
+</script>
+
+</body>
+</html>
