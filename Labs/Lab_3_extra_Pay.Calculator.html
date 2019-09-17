@@ -18,6 +18,7 @@ body {
  
 <p>BUS 104 Homework 03</p>
 <h1>Pay Calculator</h1>
+<p>Want: $547.28</p>
 
     
 <form id="expForm">
@@ -65,7 +66,6 @@ a.onclick = function() {
     var shiftThree = 9.405;
     
     if (shift == 1||shift == 2){
-        
         shift = shiftOne;
     }else if(shift == 3){
         shift = shiftThree;
@@ -84,7 +84,7 @@ a.onclick = function() {
     var outputTwo = 0
 
     if (hours <= 40){
-        var outputOne = (hours*shift);
+        var outputOne = hours*shift;
         if (shiftSelect == 3 && hours >= 32){
             outputOne = (outputOne + 30);
             console.log("Shift Bonus 1!")
@@ -93,8 +93,9 @@ a.onclick = function() {
         outputOne = outputOne.toFixed(2);
         document.getElementById("outputFormula").innerHTML = "$"+shift+" * "+hours+" = " + "$" + outputOne.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     } else {
-        var outputOne = (hours*shift);
+        var outputOne = (hours-(hours-40))*shift;
         if (shiftSelect == 3 && hours >= 32){
+            console.log("One: " + outputOne);
             outputOne = (outputOne + 30);
             console.log("Shift Bonus 2!")
             document.getElementById("shiftBonus").innerHTML = "You've recieved a $30 shift bonus";
@@ -103,7 +104,7 @@ a.onclick = function() {
         console.log(outputOne);
         console.log(outputTwo);
         outputOne = outputOne.toFixed(2);
-        document.getElementById("outputFormula").innerHTML = "($"+shift+" * "+hours+") + ($"+ (shift*1.5).toFixed(3) + "*" + (hours-40) +") = " + "$" + outputTwo.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        document.getElementById("outputFormula").innerHTML = "($"+shift+" * "+(hours-(hours-40))+") + ($"+ (shift*1.5).toFixed(3) + "*" + (hours-40) +") = " + "$" + outputTwo.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
     console.log(outputOne);
