@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+ 
+<p>BUS 104 Homework 04</p>
+<h1>Loan Calculator</h1>
+
+
+
+<script type="text/javascript">
+/*
+Lukas Murdock
+Section EA
+*/
+
+// User input: Integer - Payment month
+// User input: Integer - Loan amount
+// User input: Integer - Monthly payment
+// Loop: (deduct monthly payment from remaining loan amount)
+// Alert: "In month X, your remaining loan balance is $XXXX."
+
+// Initialize variables
+var paymentMonth=0,
+    loan=10000,
+    mPayment=250;
+
+
+paymentMonth = Number(prompt("Enter payment month."));
+
+var i;
+for (i = 0; i < paymentMonth; i++) {
+  loan = loan - mPayment;
+}
+
+alert("In month " + paymentMonth + ", your remaining loan balance is $"+ loan+ ".")
+
+</script>
+
+</body>
+</html>
