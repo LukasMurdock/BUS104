@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+ 
+<p>BUS 104 Homework 05</p>
+<h1>Order Fulfillment Tracker</h1>
+
+
+
+<script type="text/javascript">
+/*
+Lukas Murdock
+Section EA
+*/
+
+// User input: String - Product Code
+// User input: Integer - Quantity
+// Loop: Find product code information and set variables
+// Alert "Total Price: $[unitPrice * quantity], Total Shipping Volume: [unitVolume * quantity] cubic feet"
+
+
+// Initialize variables 
+var productCode="",
+    quantity=0,
+    unitPrice=0,
+    unitVolume=0;
+    
+
+// In this example each array acts as a 'column' of the table.
+var codeArray =   ["LT", "ST", "DC", "LC", "PR", "SP"];
+var volumeArray = [5, 3, 3.75, 2, 2.5, 0.5];
+var priceArray =   [1000, 600, 650, 800, 375, 350];
+
+// Getting information from user
+productCode = prompt("Enter product code:")
+quantity = Number(prompt("Enter quantity:"))
+
+
+// My first thought was not to use a loop...
+// .indexOf returns position
+var arrayPosition = codeArray.indexOf(productCode);
+unitPrice = priceArray[arrayPosition] * quantity;
+unitVolume = volumeArray[arrayPosition] * quantity;
+// NOTE: ^ that's how I would solve it instead of this ↓
+
+
+// Buuuuut it says to use a for loop so let's get to it.
+for (var i = 0; i < codeArray.length; i++) {
+  if (codeArray[i] == productCode){
+    arrayPosition = i;
+  }
+}
+unitPrice = priceArray[arrayPosition] * quantity;
+unitVolume = volumeArray[arrayPosition] * quantity;
+
+
+// Remember the first item in an array is [0]!
+
+alert("Total Price: $" + unitPrice + ", Total Shipping Volume: " + unitVolume + " cubic feet");
+</script>
+
+</body>
+</html>
