@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+ 
+<p>BUS 104 Lab 05</p>
+<h1>Order Fulfillment Tracker</h1>
+
+
+
+<script type="text/javascript">
+/*
+Lukas Murdock
+Section EA
+*/
+
+// Loop: Until Quantity = 0
+  // User input: String - Product Code
+  // User input: Integer - Quantity
+// Loop: Find product code information and set variables
+// Alert "There are a total of [itemTotal] items in this order. The total value of the order is $[valueTotal] and the total volume is [volumeTotal] cu. ft., which will require [truckCount] trucks to ship."
+
+/*
+  Test input: SP, 212,
+              SW, 307,
+              LT, 525,
+              LC, 80,
+              XX, 0
+  Output: 1124 total items,
+          $851600 total value,
+          3044 cu. feet.,
+          3 trucks to ship. 
+*/
+
+// Initialize variables 
+var productCode="",
+    quantity=1,
+    priceTotal=0,
+    volumeTotal=0,
+    itemTotal=0;
+    
+
+// In this example each array acts as a 'column' of the table.
+var codeArray =   ["LT", "ST", "DC", "LC", "PR", "SP", "SW"];
+var volumeArray = [5, 3, 3.75, 2, 2.5, 0.5, 0.5];
+var priceArray =   [900, 600, 675, 700, 325, 800, 500];
+
+/*
+Another way to mentally view arrays would be like lists starting at 0:
+codeArray =       volumeArray =     priceArray =
+0.) LT            0.) 5             0.) 900
+1.) ST            1.) 3             1.) 600
+2.) DC            2.) 3.75          2.) 675
+3.) LC            3.) 2             3.) 700
+
+So the process of this program is
+1. Getting the product code ("LT") and quantity from the user,
+2. Searching the 'codeArray' to find the location of that product, in this case 'LT' = 0.
+    It's the first item and arrays start at 0.
+3. Now that we have the location of that item we can search the other 'lists' (arrays) at that same location!
+    From this we can find the volume of that product and the price,
+    We're really asking the computer, "hey what's the value of #0 in volumeArray?"
+     and "What's the value of #0 in priceArray?"
+    item 0 (the location of 'LT') in volumeArray = 5
+    item 0 in priceArray = 900
+4. So everytime we get input from the user ^this^ entire thing plays out.
+    To get totals across all products we enter we just add the same variable to its calculation,
+    priceTotal = priceTotal +
+    volumeTotal = volumeTotal + 
+    itemTotal = itemTotal +
+5. So now that we know where the price and volume for the product is... it's time to calculate.
+    To calculate the total price for the products we need to include quantity of products,
+    priceTotal = priceTotal + (priceArray[0] * quantity)
+    ^ remember we add it to itself because we want the total across ALL the entered products, and this loop plays out multiple times.
+6. Output that shit so we know we did it right!
+    Hopefully this helped and didn't just confuse the shit out of you.
+    That was a lot of words but it's really not that much code.
+*/
+
+// Get information from user until quantity == 0
+while (quantity !== 0 ) {
+
+  productCode = prompt("Enter product code:")
+  quantity = Number(prompt("Enter quantity:"))
+
+  // For everytime quantity !== 0, find the position of the product in the array
+  // (like finding a number on a numbered list)
+  for (var i = 0; i < codeArray.length; i++) {
+    if (codeArray[i] == productCode){
+      priceTotal = priceTotal + (priceArray[i] * quantity);
+      volumeTotal = volumeTotal + (volumeArray[i] * quantity);
+      itemTotal = itemTotal + quantity;
+    }
+  }
+  
+}
+
+alert("There are a total of " + itemTotal + " items in this order. The total value of the order is $" + priceTotal + " and the total volume is " + volumeTotal + " cu. ft., which will require " + Math.ceil(volumeTotal/1500) + " trucks to ship.");
+</script>
+
+</body>
+</html>
